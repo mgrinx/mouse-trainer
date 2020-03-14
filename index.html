@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Trainer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="layered-canvas"></div>
+
+    <form class="box box-left">
+        <div class="box-child flex-row">
+            <label for="size">Size</label>
+            <input type="text" name="size" id="size">
+        </div>
+        <div class="box-child flex-row">
+            <label for="life">Life</label>
+            <input type="text" name="life" id="life">
+        </div>
+        <div class="box-child flex-row">
+            <label for="speed">Speed</label>
+            <input type="text" name="speed" id="speed">
+        </div>
+    </form>
+
+    <div class="box box-right">
+        <div class="box-child flex-row">
+            <span>Acc:</span>
+            <span id="accuracy"></span>
+        </div>
+        <button id="play-button" class="box-child">Start</button>
+    </div>
+
+    <audio src="assets/blip.wav">
+    <script src="script.js"></script>
+</body>
+</html>
