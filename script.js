@@ -30,14 +30,14 @@ function updateAccText() {
 }
 
 class Circle {
-    ctx = document.createElement("canvas").getContext("2d");
-    mouseOver = false;
-    isDead = false;
-    disappearInterval;
     constructor (x, y) {
         this.x = x;
         this.y = y;
         this.r = size * rem;
+        this.mouseOver = false;
+        this.isDead = false;
+        this.disappearInterval;
+        this.ctx = document.createElement("canvas").getContext("2d");
         this.ctx.canvas.setAttribute("width", this.r * 2);
         this.ctx.canvas.setAttribute("height", this.r * 2);
         this.ctx.canvas.setAttribute("style", `left: ${this.x}px; top: ${this.y}px;`);
@@ -133,9 +133,9 @@ function createCircle() {
 let circleInterval;
 
 myForm.addEventListener("keyup", function(event) {
+    event.preventDefault();
     // update and start demo when the user presses enter on the form
     if (event.keyCode === 13) {
-        event.preventDefault();
         size = parseFloat(sizeInput.value);
         life = parseFloat(lifeInput.value);
         speed = parseFloat(speedInput.value);
