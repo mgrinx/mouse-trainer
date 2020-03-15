@@ -134,24 +134,20 @@ function createCircle() {
 
 let circleInterval;
 
-function updateVariables(event) {
-    event.preventDefault();
-    size = parseFloat(sizeInput.value);
-    life = parseFloat(lifeInput.value);
-    speed = parseFloat(speedInput.value);
-    localStorage.setItem("size", size);
-    localStorage.setItem("life", life);
-    localStorage.setItem("speed", speed);
-    if (circleInterval) {
-        clearInterval(circleInterval);
-        circleInterval = null;
-    }
-}
-myForm.addEventListener("change", updateVariables);
 myForm.addEventListener("keyup", function(event) {
     // update and start demo when the user presses enter on the form
     if (event.keyCode === 13) {
-        updateVariables(event);
+        event.preventDefault();
+        size = parseFloat(sizeInput.value);
+        life = parseFloat(lifeInput.value);
+        speed = parseFloat(speedInput.value);
+        localStorage.setItem("size", size);
+        localStorage.setItem("life", life);
+        localStorage.setItem("speed", speed);
+        if (circleInterval) {
+            clearInterval(circleInterval);
+            circleInterval = null;
+        }
         createCircle();
         circleInterval = setInterval(createCircle, 1000 / speed);
         playBtn.textContent = "Stop";
