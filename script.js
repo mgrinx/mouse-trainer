@@ -119,12 +119,11 @@ function createCircle() {
     let x = Math.floor(Math.random() * (innerWidth - size * rem * 2));
     let y = Math.floor(Math.random() * (innerHeight - size * rem * 2));
     // prevent the circle from being inside the header boxes...
-    while (x > myForm.offsetLeft && x < myForm.offsetLeft + myForm.offsetWidth
-        && x > boxRight.offsetLeft && x < boxRight.offsetLeft + boxRight.offsetWidth) {
+    let boxLeftBoundaryX = myForm.offsetLeft + myForm.offsetWidth;
+    let boxRightBoundaryX = boxRight.offsetLeft - size * rem * 2;
+    let boxBoundaryY = myForm.offsetTop + myForm.offsetHeight;
+    while ((x < boxLeftBoundaryX || x > boxRightBoundaryX) && y < boxBoundaryY) {
         x = Math.floor(Math.random() * (innerWidth - size * rem * 2));
-    }
-    while (y > myForm.offsetTop && y < myForm.offsetTop + myForm.offsetHeight
-        && y > boxRight.offsetTop && y < boxRight.offsetTop + boxRight.offsetHeight) {
         y = Math.floor(Math.random() * (innerHeight - size * rem * 2));
     }
     new Circle(x, y);
