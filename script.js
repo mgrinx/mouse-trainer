@@ -1,13 +1,12 @@
 let myLayeredCanvas = document.querySelector("#layered-canvas");
 let myForm = document.querySelector("form");
+let boxRight = document.querySelector(".box-right");
 let sizeInput = document.querySelector("#size");
 let lifeInput = document.querySelector("#life");
 let speedInput = document.querySelector("#speed");
 let playBtn = document.querySelector("#play-button")
 let accText = document.querySelector("#accuracy")
 let blipAudio = document.querySelector("audio");
-
-let boxArr = document.querySelectorAll(".box"); // header boxes
 
 let rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
 let defaultColor = "#FF9034";
@@ -120,13 +119,13 @@ function createCircle() {
     let x = Math.floor(Math.random() * (innerWidth - size * rem * 2));
     let y = Math.floor(Math.random() * (innerHeight - size * rem * 2));
     // prevent the circle from being inside the header boxes...
-    for (let i = 0; i < boxArr.length; i++) {
-        while (x > boxArr[i].offsetLeft && x < boxArr[i].offsetLeft + boxArr[i].offsetWidth) {
-            x = Math.floor(Math.random() * (innerWidth - size * rem * 2));
-        }
-        while (y > boxArr[i].offsetTop && y < boxArr[i].offsetTop + boxArr[i].offsetHeight) {
-            y = Math.floor(Math.random() * (innerHeight - size * rem * 2));
-        }
+    while (x > myForm.offsetLeft && x < myForm.offsetLeft + myForm.offsetWidth
+        && x > boxRight.offsetLeft && x < boxRight.offsetLeft + boxRight.offsetWidth) {
+        x = Math.floor(Math.random() * (innerWidth - size * rem * 2));
+    }
+    while (y > myForm.offsetTop && y < myForm.offsetTop + myForm.offsetHeight
+        && y > boxRight.offsetTop && y < boxRight.offsetTop + boxRight.offsetHeight) {
+        y = Math.floor(Math.random() * (innerHeight - size * rem * 2));
     }
     new Circle(x, y);
     totalCircles++;
