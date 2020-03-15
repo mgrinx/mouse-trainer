@@ -30,7 +30,7 @@ function updateAccText() {
 }
 
 class Circle {
-    #ctx = document.createElement("canvas").getContext("2d");
+    ctx = document.createElement("canvas").getContext("2d");
     mouseOver = false;
     isDead = false;
     disappearInterval;
@@ -38,25 +38,25 @@ class Circle {
         this.x = x;
         this.y = y;
         this.r = size * rem;
-        this.#ctx.canvas.setAttribute("width", this.r * 2);
-        this.#ctx.canvas.setAttribute("height", this.r * 2);
-        this.#ctx.canvas.setAttribute("style", `left: ${this.x}px; top: ${this.y}px;`);
-        this.#ctx.canvas.addEventListener("mousemove", this.collisionHandler);
-        this.#ctx.canvas.addEventListener("mouseleave", this.mouseLeave);
-        this.#ctx.canvas.addEventListener("click", this.kill);
+        this.ctx.canvas.setAttribute("width", this.r * 2);
+        this.ctx.canvas.setAttribute("height", this.r * 2);
+        this.ctx.canvas.setAttribute("style", `left: ${this.x}px; top: ${this.y}px;`);
+        this.ctx.canvas.addEventListener("mousemove", this.collisionHandler);
+        this.ctx.canvas.addEventListener("mouseleave", this.mouseLeave);
+        this.ctx.canvas.addEventListener("click", this.kill);
 
-        myLayeredCanvas.appendChild(this.#ctx.canvas);
+        myLayeredCanvas.appendChild(this.ctx.canvas);
         this.draw(defaultColor);
         setTimeout(this.decay, 1000 * life);
     }
     draw = (color) => {
-        this.#ctx.clearRect(0, 0, this.r * 2, this.r * 2);
-        this.#ctx.moveTo(this.r * 2, this.r);
-        this.#ctx.beginPath();
-        this.#ctx.arc(this.r, this.r, this.r, 0, 2 * Math.PI);
-        this.#ctx.closePath();
-        this.#ctx.fillStyle = color;
-        this.#ctx.fill();
+        this.ctx.clearRect(0, 0, this.r * 2, this.r * 2);
+        this.ctx.moveTo(this.r * 2, this.r);
+        this.ctx.beginPath();
+        this.ctx.arc(this.r, this.r, this.r, 0, 2 * Math.PI);
+        this.ctx.closePath();
+        this.ctx.fillStyle = color;
+        this.ctx.fill();
     }
     distanceFromCenter = (x, y) => {
         return Math.sqrt(Math.pow(Math.abs(this.x + this.r - x), 2) + Math.pow(Math.abs(this.y + this.r - y), 2));
@@ -88,12 +88,12 @@ class Circle {
                 timer--;
                 if (timer === 0) {
                     // delete circle once timer runs out
-                    self.#ctx.canvas.remove();
+                    self.ctx.canvas.remove();
                     clearInterval(self.disappearInterval);
                 } else {
                     // create a dynamic gradient to fill the circle area with
                     let grdR0 = self.r - self.r / (timer / factor) > 0 ? self.r - self.r / (timer / factor) : 0;
-                    let grd = self.#ctx.createRadialGradient(self.r, self.r, grdR0, self.r, self.r, self.r);
+                    let grd = self.ctx.createRadialGradient(self.r, self.r, grdR0, self.r, self.r, self.r);
                     grd.addColorStop(0, color);
                     grd.addColorStop(1, "transparent");
                     self.draw(grd);
