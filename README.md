@@ -2,7 +2,7 @@
 
 A simple mouse training exercise.
 
-[Screenshot](Screenshot.png)
+![Screenshot](Screenshot.png)
 
 ## Directions
 
